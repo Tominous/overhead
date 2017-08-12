@@ -1,9 +1,9 @@
 'use strict';
 
-const cssnext = require('postcss-cssnext');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const cssnext = require('postcss-cssnext');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const reactToolboxOverrides = require('./react-toolbox-overrides');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -207,6 +208,11 @@ module.exports = {
                     'Firefox ESR',
                     'not ie < 9', // React doesn't support IE8 anyway
                   ],
+                  features: {
+                    customProperties: {
+                      variables: reactToolboxOverrides,
+                    },
+                  },
                 }),
               ],
             },
