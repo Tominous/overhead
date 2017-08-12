@@ -1,4 +1,9 @@
-.App {
+.app {
   text-align: center;
+  padding: 3em 0;
+}
+
+.appTest {
+  composes: app;
   background: black;
 }
