@@ -1,22 +1,26 @@
 import { FETCH_DATA } from './actions';
+import update from 'immutability-helper';
 
 const initialState = {
   planes: []
 };
 
-let fakePlanes = [
-  { iaco24: 'A1234' },
-  { iaco24: 'B5678' },
-  { iaco24: 'C9876' },
-];
+function* planeMaker() {
+  var index = 0;
+  while (true) {
+    const planeIndex = index++;
+    yield {icao24: `A${planeIndex}`, flightNo: `F0${planeIndex}` };
+  }
+}
+
+var planes = planeMaker();
 
 function fakeFetch(state = initialState, action) {
   switch (action.type) {
     case FETCH_DATA:
-      const newPlane = fakePlanes.splice(0, 1);
-      return Object.assign({}, state, {
-        planes: [newPlane]
-      });
+      return update(state, {
+        planes: { $push: [planes.next().value] }
+      })
 
     default: return state
   }

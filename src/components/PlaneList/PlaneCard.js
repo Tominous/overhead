@@ -2,23 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  icao24: PropTypes.string.required,
-  planeImage: PropTypes.string,
-  flightNo: PropTypes.string.required,
+  plane: PropTypes.object.required,
 }
 
 const PlaneCard = (props) => {
   const {
     icao24,
-    planeImage,
+    img,
     flightNo
-  } = props;
+  } = props.plane;
 
   return (
     <div>
       <h1>{icao24}</h1>
       <p>Flight No: {flightNo}</p>
-      <img src={planeImage} alt="{icao24}" />
+      <img src={img} alt={icao24} />
     </div>
   )
 }
