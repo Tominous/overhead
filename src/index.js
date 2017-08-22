@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import appReducer from './reducers/appReducer';
+import fakeFetchReducers from './components/FakeFetch/reducers';
 
 import App from './App';
 import './index.css';
@@ -11,7 +11,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 let appStore = createStore(
-  appReducer,
+  fakeFetchReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
