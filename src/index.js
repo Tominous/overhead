@@ -1,18 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import thunkMiddleware from 'redux-thunk';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import fakeFetchReducers from './components/FakeFetch/reducers';
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './reducers';
 
 import App from './App';
 import './index.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 let appStore = createStore(
-  fakeFetchReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+  )
 );
 
 ReactDOM.render(
