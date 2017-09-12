@@ -15,7 +15,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let appStore = createStore(
   rootReducer,
-  composeEnhancers(
+  composeEnhancers
     applyMiddleware(thunkMiddleware)
   )
 );
